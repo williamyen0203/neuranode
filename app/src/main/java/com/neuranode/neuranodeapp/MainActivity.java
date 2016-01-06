@@ -5,8 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -14,6 +18,7 @@ import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
+    ListView questionContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,23 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
         databaseHelper.getReadableDatabase();
-        Cursor cursor = databaseHelper.queryFromDb();
-        cursor.moveToFirst();
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(cursor.getString(1));
+        Cursor cursor = databaseHelper.getQuestions();
 
-//        try{
-//            databaseHelper.createDatabase();
-//        } catch (IOException e){
-//            throw new Error("Unable to create database.");
-//        }
-//        try{
-//            databaseHelper.openDatabase();
-//            databaseHelper.getWritableDatabase();
-//        } catch (SQLException e){
-//            throw new Error("Unable to open database.");
-////            throw e;
-//        }
+        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this,
+                R.layout.question,
+                databaseHelper.getQuestions(),
+                new String[] {"question"},
+                new int[] {R.id.questionText},
+                0);
+
+        questionContainer = (ListView) findViewById(R.id.questionContainer);
+        questionContainer.setAdapter(cursorAdapter);
     }
 
     @Override
