@@ -1,4 +1,4 @@
-package com.william.neuranodeapp;
+package com.neuranode.neuranodeapp;
 
 import org.junit.Test;
 
