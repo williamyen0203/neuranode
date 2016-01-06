@@ -1,10 +1,13 @@
 package com.neuranode.neuranodeapp;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,18 +23,24 @@ public class MainActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         databaseHelper = new DatabaseHelper(this);
-        try{
-            databaseHelper.createDatabase();
-        } catch (IOException e){
-            throw new Error("Unable to create database.");
-        }
-        try{
-            databaseHelper.openDatabase();
-            databaseHelper.getWritableDatabase();
-        } catch (SQLException e){
-            throw new Error("Unable to open database.");
-//            throw e;
-        }
+        databaseHelper.getReadableDatabase();
+        Cursor cursor = databaseHelper.queryFromDb();
+        cursor.moveToFirst();
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(cursor.getString(1));
+
+//        try{
+//            databaseHelper.createDatabase();
+//        } catch (IOException e){
+//            throw new Error("Unable to create database.");
+//        }
+//        try{
+//            databaseHelper.openDatabase();
+//            databaseHelper.getWritableDatabase();
+//        } catch (SQLException e){
+//            throw new Error("Unable to open database.");
+////            throw e;
+//        }
     }
 
     @Override
