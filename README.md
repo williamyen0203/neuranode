@@ -1,1 +1,1 @@
-# neuranode-app
+# Neuranode for Android
