@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     ListView questionContainer;
     Button submitButton;
+    CustomCursorAdapter customCursorAdapter;
     int[] traits = {0, 0, 0, 0, 0, 0, 0, 0};
 
     @Override
@@ -34,38 +35,10 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         databaseHelper.getReadableDatabase();
 
-        // populate listView with data
-        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this,
-                R.layout.question,
-                databaseHelper.getQuestions(),
-                new String[] {"question"},
-                new int[] {R.id.questionText},
-                0);
-
-        // bind trait with question
-        SimpleCursorAdapter.ViewBinder binder = new SimpleCursorAdapter.ViewBinder() {
-            @Override
-            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-                int trait = cursor.getColumnIndex("trait");
-                System.out.println("Trait: " + trait);
-                SeekBar seekBar = (SeekBar) ((LinearLayout) view.getParent()).getChildAt(1);
-                seekBar.setContentDescription(Integer.toString(trait));
-                return true;
-
-
-//                String name = cursor.getColumnName(columnIndex);
-//                System.out.println(name);
-//                if (name.equals("trait")){
-//                    int trait = cursor.getInt(columnIndex);
-//                System.out.println(view.getClass().getName());
-//                }
-//                return false;
-            }
-        };
-        cursorAdapter.setViewBinder(binder);
-
+        // set CustomCursorAdapter to questionContainer
+        customCursorAdapter = new CustomCursorAdapter(this, databaseHelper.getQuestions(), 0);
         questionContainer = (ListView) findViewById(R.id.questionContainer);
-        questionContainer.setAdapter(cursorAdapter);
+        questionContainer.setAdapter(customCursorAdapter);
 
         // on submit button click
         submitButton = (Button) findViewById(R.id.submitButton);

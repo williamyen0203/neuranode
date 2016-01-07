@@ -10,7 +10,7 @@ import java.io.*;
 import java.sql.SQLException;
 
 /**
- * Created by Yen on 1/4/2016.
+ * Created by William on 1/4/2016.
  */
 public class DatabaseHelper extends SQLiteAssetHelper {
     private static String DATABASE_NAME = "questions.db";
