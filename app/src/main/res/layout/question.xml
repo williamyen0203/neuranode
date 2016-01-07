@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/questionChoice"
         android:layout_marginBottom="20dp"
-        android:max="5" />
+        android:max="4"
+        android:progress="2" />
 
 </LinearLayout>

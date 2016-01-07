@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
     public Cursor getQuestions(){
         SQLiteDatabase database = this.getReadableDatabase();
-        String query = "SELECT * FROM questions_table";
+        String query = "SELECT * FROM questions_table LIMIT 10";
         Cursor cursor = database.rawQuery(query, null);
         return cursor;
     }

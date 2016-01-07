@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">NeuranodeApp</string>
     <string name="action_settings">Settings</string>
-    <string name="choice_1"></string>
+    <string name="submit_button">Submit</string>
 </resources>
