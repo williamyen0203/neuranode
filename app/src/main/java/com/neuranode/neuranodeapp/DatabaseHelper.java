@@ -6,9 +6,6 @@ import android.database.sqlite.*;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
-import java.io.*;
-import java.sql.SQLException;
-
 /**
  * Created by William on 1/4/2016.
  */
@@ -22,9 +19,14 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         this.context = context;
     }
 
-    public Cursor getQuestions(){
+    /**
+     * <code>cursorQuery</code> queries the attached database with specified query.
+     *
+     * @param query     SQLite query
+     * @return          Cursor object with selected information
+     */
+    public Cursor cursorQuery(String query){
         SQLiteDatabase database = this.getReadableDatabase();
-        String query = "SELECT * FROM questions_table LIMIT 10";
         Cursor cursor = database.rawQuery(query, null);
         return cursor;
     }

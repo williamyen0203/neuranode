@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,17 +11,18 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
-import android.widget.SimpleCursorAdapter;
-
-import java.io.IOException;
-import java.sql.SQLException;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+    QuestionCursorAdapter questionCursorAdapter;
     DatabaseHelper databaseHelper;
     ListView questionContainer;
     Button submitButton;
-    CustomCursorAdapter customCursorAdapter;
-    int[] traits = {0, 0, 0, 0, 0, 0, 0, 0};
+    String questionQuery = "SELECT * FROM questions_table GROUP BY trait LIMIT 11";
+    Cursor cursor;
+    // traits[i][0] = total value
+    // traits[i][1] = number of questions
+    int[][] traits = {{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,28 +36,36 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper.getReadableDatabase();
 
         // set CustomCursorAdapter to questionContainer
-        customCursorAdapter = new CustomCursorAdapter(this, databaseHelper.getQuestions(), 0);
+        cursor = databaseHelper.cursorQuery(questionQuery);
+        questionCursorAdapter = new QuestionCursorAdapter(this, databaseHelper.cursorQuery(questionQuery), 0);
         questionContainer = (ListView) findViewById(R.id.questionContainer);
-        questionContainer.setAdapter(customCursorAdapter);
+        questionContainer.setAdapter(questionCursorAdapter);
 
         // on submit button click
         submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(calculateTraits());
+                updateTraits();
             }
         });
     }
 
-    public String calculateTraits(){
-        int numChildren = questionContainer.getChildCount();
-        for (int i = 0; i < numChildren; i++){
-            SeekBar seekBar = (SeekBar) (((LinearLayout) questionContainer.getChildAt(i)).getChildAt(1));
-            System.out.println("Progress: " + seekBar.getProgress());
-            System.out.println("Trait: " + seekBar.getContentDescription());
-        }
-        return "";
+    /**
+     * <code>calculateTraits</code> will update the <code>traits</code> array with the values
+     * depending on the user's choice (<code>SeekBar</code> values).
+     */
+    public void updateTraits(){
+        System.out.println(questionContainer.getChildCount());
+//        int numChildren = cursor.getCount();
+//        for (int i = 0; i < numChildren; i++){
+//            SeekBar seekBar = (SeekBar) (((LinearLayout) questionContainer.getChildAt(i)).getChildAt(1));
+//            int traitAffected = Integer.parseInt(seekBar.getContentDescription().toString()) - 1;
+//            traits[traitAffected][0] += seekBar.getProgress();
+//            traits[traitAffected][1]++;
+//        }
+        // FIXME debug
+        System.out.println(Arrays.deepToString(traits));
     }
 
     @Override

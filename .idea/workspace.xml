@@ -11,9 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4773cb38-7c9e-425c-a407-3bdcf6d7eb80" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/CustomCursorAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/CustomCursorAdapter.java" />
+      <change type="DELETED" beforePath="C:\Users\Yen\Desktop\neuranode-app\.idea\libraries\appcompat_v7_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yen\Desktop\neuranode-app\.idea\libraries\design_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yen\Desktop\neuranode-app\.idea\libraries\recyclerview_v7_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yen\Desktop\neuranode-app\.idea\libraries\sqliteassethelper_2_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yen\Desktop\neuranode-app\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yen\Desktop\neuranode-app\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yen\Desktop\neuranode-app\app\src\main\java\com\neuranode\neuranodeapp\CustomCursorAdapter.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/DatabaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/DatabaseHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="neuranode-app.iws" />
@@ -46,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -78,24 +86,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6197917">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.4814816">
+              <caret line="30" column="63" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
               <folding>
-                <element signature="e#1588#1759#0" expanded="true" />
-                <element signature="e#1758#1759#0" expanded="true" />
+                <element signature="e#1789#1937#0" expanded="true" />
+                <element signature="e#1936#1937#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomCursorAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/CustomCursorAdapter.java">
+      <file leaf-file-name="fragment_quiz.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_quiz.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuizFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/QuizFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5277778">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuestionCursorAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/QuestionCursorAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+              <caret line="41" column="72" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1310,7 +1341,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\Users\Yen\Desktop\neuranode-app" value="4355956177089" />
+        <entry key="C:\Users\Yen\Desktop\neuranode-app" value="4356113473161" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1680,9 +1711,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/CustomSeekBar.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/question.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/CustomCursorAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/DatabaseHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/QuestionCursorAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1949,6 +1981,7 @@
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
+      <recent name="com.neuranode.neuranodeapp" />
       <recent name="com.william.neuranodeapp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -1957,6 +1990,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Yen\Desktop\neuranode-app\app\src\main\assets\databases" />
       <recent name="C:\Users\Yen\Desktop\neuranode-app\app\src\main\assets" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.neuranode.neuranodeapp" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.app">
@@ -2201,8 +2237,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1588#1759#0" expanded="true" />
-            <element signature="e#1758#1759#0" expanded="true" />
+            <element signature="e#1789#1937#0" expanded="true" />
+            <element signature="e#1936#1937#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2220,8 +2256,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1588#1759#0" expanded="true" />
-            <element signature="e#1758#1759#0" expanded="true" />
+            <element signature="e#1789#1937#0" expanded="true" />
+            <element signature="e#1936#1937#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2330,15 +2366,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
-      <provider editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/QuestionCursorAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
-          <folding />
+          <caret line="41" column="72" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/DatabaseHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/question.xml">
@@ -2352,32 +2395,44 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/CustomCursorAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
+      <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/DatabaseHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6197917">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state vertical-scroll-proportion="-7.4814816">
+          <caret line="30" column="63" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
           <folding>
-            <element signature="e#1588#1759#0" expanded="true" />
-            <element signature="e#1758#1759#0" expanded="true" />
+            <element signature="e#1789#1937#0" expanded="true" />
+            <element signature="e#1936#1937#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_quiz.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/neuranode/neuranodeapp/QuizFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5277778">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
