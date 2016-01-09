@@ -11,15 +11,15 @@ import java.util.Arrays;
 
 public class QuizActivity extends AppCompatActivity {
     QuestionCursorAdapter questionCursorAdapter;
-    Cursor cursor;
     DatabaseHelper databaseHelper;
-    String questionQuery = "SELECT * FROM questions_table a WHERE a._id IN (SELECT b._id FROM questions_table b WHERE a.trait = b.trait ORDER BY random() LIMIT 2) ORDER BY random()";
+    String questionQuery = "SELECT * FROM questions_table a WHERE a._id IN (SELECT b._id FROM questions_table b WHERE a.trait = b.trait LIMIT 4) ORDER BY random()";
     String calculateQuery = "SELECT trait, choice FROM questions_table WHERE choice IS NOT NULL";
     ListView questionContainer;
     Button submitButton;
     // traits[i][0] = total value
     // traits[i][1] = number of questions
     int[][] traits = {{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}};
+    double[] traitsAvg = {0, 0, 0, 0, 0, 0, 0, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class QuizActivity extends AppCompatActivity {
 
         // load data from database
         databaseHelper = new DatabaseHelper(this);
-        cursor = databaseHelper.cursorQuery(questionQuery);
+
         questionCursorAdapter = new QuestionCursorAdapter(this, databaseHelper.cursorQuery(questionQuery), 0);
         questionContainer = (ListView) findViewById(R.id.questionContainer);
         questionContainer.setAdapter(questionCursorAdapter);
@@ -45,8 +45,6 @@ public class QuizActivity extends AppCompatActivity {
                 updateTraits();
             }
         });
-
-        cursor.close();
     }
 
     /**
@@ -62,10 +60,15 @@ public class QuizActivity extends AppCompatActivity {
             traits[trait][0] += choice;
             traits[trait][1]++;
         }
+        calculateCursor.close();
 
-        cursor.close();
+        for (int i = 0; i < traits.length; i++){
+            traitsAvg[i] = 1.0 * traits[i][0] / traits[i][1];
+        }
+
         // FIXME debug
         System.out.println(Arrays.deepToString(traits));
+        System.out.println(Arrays.toString(traitsAvg));
     }
 
 }
