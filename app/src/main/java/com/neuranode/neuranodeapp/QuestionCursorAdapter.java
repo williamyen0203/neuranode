@@ -15,10 +15,13 @@ import android.widget.TextView;
  */
 public class QuestionCursorAdapter extends CursorAdapter {
     private LayoutInflater cursorInflater;
+    DatabaseHelper databaseHelper;
 
     public QuestionCursorAdapter(Context context, Cursor cursor, int flags) {
         super(context, cursor, flags);
         cursorInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        databaseHelper = new DatabaseHelper(context);
+        databaseHelper.getReadableDatabase();
     }
 
     /**
@@ -37,10 +40,28 @@ public class QuestionCursorAdapter extends CursorAdapter {
         TextView textView = (TextView) ((LinearLayout) view).getChildAt(0);
         textView.setText(cursor.getString(questionIndex));
 
-        // set content description of SeekBar
-        int traitIndex = cursor.getColumnIndex("trait");
+        // set description to index
+        int rowId = cursor.getColumnIndex("_id");
         SeekBar seekBar = (SeekBar) ((LinearLayout) view).getChildAt(1);
-        seekBar.setContentDescription(Integer.toString(cursor.getInt(traitIndex)));
+        seekBar.setContentDescription(Integer.toString(cursor.getInt(rowId)));
+        databaseHelper.updateChoice(Integer.parseInt(seekBar.getContentDescription().toString()), seekBar.getProgress());
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            /**
+             * <code>onProgressChanged</code> updates the choice column of the database with its progress.
+             */
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                databaseHelper.updateChoice(Integer.parseInt(seekBar.getContentDescription().toString()), progress);
+                System.out.println("Id of " + seekBar.getContentDescription().toString() + " choice updated to " + progress);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
     }
 
     public View newView(Context context, Cursor cursor, ViewGroup parent){
