@@ -16,8 +16,7 @@ public class QuizActivity extends AppCompatActivity {
     String calculateQuery = "SELECT trait, choice FROM questions_table WHERE choice IS NOT NULL";
     ListView questionContainer;
     Button submitButton;
-    // traits[i][0] = total value
-    // traits[i][1] = number of questions
+    // [0] = total value, [1] = number of questions
     int[][] traits = {{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}};
     double[] traitsAvg = {0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -26,10 +25,15 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        // load data from database
+        // load data from database, reset choices
         databaseHelper = new DatabaseHelper(this);
+        // TODO: close this cursor
+        databaseHelper.clearChoices();
+        Cursor questionListCursor = databaseHelper.cursorQuery(questionQuery);
+        databaseHelper.resetChoices(questionListCursor, 2);
 
-        questionCursorAdapter = new QuestionCursorAdapter(this, databaseHelper.cursorQuery(questionQuery), 0);
+        // set adapter
+        questionCursorAdapter = new QuestionCursorAdapter(this, questionListCursor, 0);
         questionContainer = (ListView) findViewById(R.id.questionContainer);
         questionContainer.setAdapter(questionCursorAdapter);
 
@@ -52,7 +56,6 @@ public class QuizActivity extends AppCompatActivity {
      * the <code>traits</code> array accordingly.
      */
     public void updateTraits(){
-        System.out.println("updateTraits pressed");
         Cursor calculateCursor = databaseHelper.cursorQuery(calculateQuery);
         while (calculateCursor.moveToNext()){
             int trait = calculateCursor.getInt(0) - 1;
@@ -66,9 +69,7 @@ public class QuizActivity extends AppCompatActivity {
             traitsAvg[i] = 1.0 * traits[i][0] / traits[i][1];
         }
 
-        // FIXME debug
-        System.out.println(Arrays.deepToString(traits));
+        System.out.println("\n" + Arrays.deepToString(traits));
         System.out.println(Arrays.toString(traitsAvg));
     }
-
 }

@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // clear choices and randomize table
+        // clear choices
         databaseHelper = new DatabaseHelper(this);
-        databaseHelper.clearChoices();
+//        databaseHelper.clearChoices();
 
         startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {

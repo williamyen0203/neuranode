@@ -20,7 +20,6 @@ public class QuestionCursorAdapter extends CursorAdapter {
         super(context, cursor, flags);
         cursorInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         databaseHelper = new DatabaseHelper(context);
-        databaseHelper.getReadableDatabase();
     }
 
     public View newView(Context context, Cursor cursor, ViewGroup parent){
@@ -28,7 +27,7 @@ public class QuestionCursorAdapter extends CursorAdapter {
     }
 
     /**
-     * <code>bindView</code> binds the <code>cursor<    /code>'s data with the selected <code>view</code>.
+     * <code>bindView</code> binds the <code>cursor</code>'s data with the selected <code>view</code>.
      * <code>TextView</code> with id of <code>questionText</code> will bind to column <code>question</code>.
      * <code>SeekBar</code> with id of <code>questionChoice</code> will bind to column <code>trait</code>.
      *
@@ -41,15 +40,21 @@ public class QuestionCursorAdapter extends CursorAdapter {
         // set text of TextView
         int questionIndex = cursor.getColumnIndex("question");
         TextView textView = (TextView) view.findViewById(R.id.questionText);
-        textView.setText(cursor.getString(questionIndex));
+        textView.setText(cursor.getInt(cursor.getColumnIndex("_id")) + ". " + cursor.getString(questionIndex));
 
-        // set description to index
-        int rowId = cursor.getColumnIndex("_id");
+        // set seek bar
         SeekBar seekBar = (SeekBar) view.findViewById(R.id.questionChoice);
-        seekBar.setContentDescription(Integer.toString(cursor.getInt(rowId)));
-        // initialize database with choice values
-        databaseHelper.updateChoice(Integer.parseInt(seekBar.getContentDescription().toString()), seekBar.getProgress());
 
+        // set content description to id
+        int rowId = cursor.getColumnIndex("_id");
+        seekBar.setContentDescription(Integer.toString(cursor.getInt(rowId)));
+
+        // set choice
+        Cursor tempCursor = databaseHelper.cursorQueryRow(Integer.parseInt(seekBar.getContentDescription().toString()));
+        tempCursor.moveToFirst();
+        seekBar.setProgress(tempCursor.getInt(tempCursor.getColumnIndex("choice")));
+
+        // seek bar listener
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             /**
              * <code>onProgressChanged</code> updates the choice column of the database with its progress.
@@ -58,9 +63,11 @@ public class QuestionCursorAdapter extends CursorAdapter {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 databaseHelper.updateChoice(Integer.parseInt(seekBar.getContentDescription().toString()), progress);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
