@@ -14,4 +14,12 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="viewpagertitlestrip">
+        <item name="android:layout_width">fill_parent</item>
+        <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--<item name="android:textColor">@color/colorBG</item>-->
+        <item name="android:textSize">72sp</item>
+        <item name="android:text">72sp</item>
+    </style>
+
 </resources>
