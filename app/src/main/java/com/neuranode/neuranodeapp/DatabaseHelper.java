@@ -30,23 +30,44 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return database.rawQuery(query, null);
     }
 
+    /**
+     * <code>cursorQueryRow</code> returns a <code>Cursor</code> object containing a row with
+     * the specified id.
+     *
+     * @param id    id of row
+     * @return      <code>Cursor</code> object containing row with specified id.
+     */
     public Cursor cursorQueryRow(int id){
         return database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE _id=" + id, null);
     }
 
-    public void clearChoices(){
-        database.execSQL("UPDATE " + TABLE_NAME  + " SET choice=NULL");
-    }
-
+    /**
+     * <code>updateChoice</code> will update a record with the specified id to the specified choice.
+     *
+     * @param id        id of record to update
+     * @param choice    choice to update record to
+     */
     public void updateChoice(int id, int choice) {
         database.execSQL("UPDATE " + TABLE_NAME + " SET choice=" + choice + " WHERE _id=" + id);
     }
 
+    /**
+     * <code>clearChoices</code> will set all values in the choices column to NULL.
+     */
+    public void clearChoices(){
+        database.execSQL("UPDATE " + TABLE_NAME  + " SET choice=NULL");
+    }
+
+    /**
+     * <code>resetChoices</code> will initialize all questions in the cursor to the specified choice.
+     *
+     * @param cursor    cursor containing questions to reset choices for
+     * @param choice    choice to set all records to
+     */
     public void resetChoices(Cursor cursor, int choice){
         int idIndex = cursor.getColumnIndex("_id");
         while (cursor.moveToNext()){
             database.execSQL("UPDATE " + TABLE_NAME + " SET choice=" + choice + " WHERE _id=" + cursor.getInt(idIndex));
-            System.out.println("id: " + cursor.getInt(idIndex) + " choice: " + choice);
         }
     }
 }

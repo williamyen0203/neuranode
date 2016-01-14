@@ -1,5 +1,7 @@
 package com.neuranode.neuranodeapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class QuizActivity extends AppCompatActivity {
@@ -17,13 +20,16 @@ public class QuizActivity extends AppCompatActivity {
     ListView questionContainer;
     Button submitButton;
     // [0] = total value, [1] = number of questions
-    int[][] traits = {{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}};
+    ArrayList<int[]> traits = new ArrayList<>();
     double[] traitsAvg = {0, 0, 0, 0, 0, 0, 0, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        // initialize traits array
+        initializeTraits();
 
         // load data from database, reset choices
         databaseHelper = new DatabaseHelper(this);
@@ -60,16 +66,31 @@ public class QuizActivity extends AppCompatActivity {
         while (calculateCursor.moveToNext()){
             int trait = calculateCursor.getInt(0) - 1;
             int choice = calculateCursor.getInt(1);
-            traits[trait][0] += choice;
-            traits[trait][1]++;
+            traits.get(trait)[0] += choice;
+            traits.get(trait)[1]++;
         }
         calculateCursor.close();
 
-        for (int i = 0; i < traits.length; i++){
-            traitsAvg[i] = 1.0 * traits[i][0] / traits[i][1];
+        for (int i = 0; i < traits.size(); i++){
+            traitsAvg[i] = 1.0 * traits.get(i)[0] / traits.get(i)[1];
         }
 
-        System.out.println("\n" + Arrays.deepToString(traits));
-        System.out.println(Arrays.toString(traitsAvg));
+        System.out.println(traitsAvg.toString());
+
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(MainActivity.QUIZ_CODE, traitsAvg);
+        System.out.println(Arrays.toString(returnIntent.getExtras().getIntArray(MainActivity.QUIZ_CODE)));
+        setResult(Activity.RESULT_OK, returnIntent);
+        finish();
+    }
+
+    /**
+     * <code>initializeTraits</code> will initialize the <code>traits</code> ArrayList with 8
+     * [0, 0] arrays.
+     */
+    public void initializeTraits(){
+        for (int i = 0; i < 8; i++){
+            traits.add(new int[]{0, 0});
+        }
     }
 }

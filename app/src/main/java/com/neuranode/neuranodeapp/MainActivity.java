@@ -10,9 +10,14 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseHelper databaseHelper;
+    final static int QUIZ_REQUEST = 1;
+    final static String QUIZ_CODE = "quizArray";
 
     Button startButton;
+    Button profileButton;
+
+    boolean quizTaken = false;
+    double[] traitsAvg;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -21,20 +26,43 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // clear choices
-        databaseHelper = new DatabaseHelper(this);
-//        databaseHelper.clearChoices();
-
+        // start button
         startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                startActivityForResult(intent, QUIZ_REQUEST);
+            }
+        });
+
+        // profile button
+        profileButton = (Button) findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("traitsAvg", traitsAvg);
                 startActivity(intent);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case QUIZ_REQUEST:
+                if (resultCode == RESULT_OK){
+                    profileButton.setVisibility(View.VISIBLE);
+                    quizTaken = true;
+                    traitsAvg = data.getDoubleArrayExtra(QUIZ_CODE);
+                }
+                break;
+        }
+    }
+
+    // TODO: implement these later
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
