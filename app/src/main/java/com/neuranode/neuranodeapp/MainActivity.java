@@ -8,59 +8,77 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 public class MainActivity extends AppCompatActivity {
-    final static int QUIZ_REQUEST = 1;
-    final static String QUIZ_CODE = "quizArray";
+    Firebase firebaseRef;
 
-    Button startButton;
     Button profileButton;
 
-    boolean quizTaken = false;
-    double[] traitsAvg;
+    EditText emailField;
+    EditText passwordField;
+    Button loginButton;
+    Button registerButton;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // start button
-        startButton = (Button) findViewById(R.id.startButton);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivityForResult(intent, QUIZ_REQUEST);
-            }
-        });
-
         // profile button
         profileButton = (Button) findViewById(R.id.profileButton);
-        profileButton.setOnClickListener(new View.OnClickListener(){
+        profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                intent.putExtra("traitsAvg", traitsAvg);
                 startActivity(intent);
                 finish();
             }
         });
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case QUIZ_REQUEST:
-                if (resultCode == RESULT_OK){
-                    profileButton.setVisibility(View.VISIBLE);
-                    quizTaken = true;
-                    traitsAvg = data.getDoubleArrayExtra(QUIZ_CODE);
-                }
-                break;
-        }
+        // login buttons
+        emailField = (EditText) findViewById(R.id.emailField);
+        passwordField = (EditText) findViewById(R.id.passwordField);
+        loginButton = (Button) findViewById(R.id.loginButton);
+        registerButton = (Button) findViewById(R.id.registerButton);
+
+        Firebase.setAndroidContext(this);
+        firebaseRef = new Firebase("https://boiling-torch-9138.firebaseio.com/");
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseRef.authWithPassword(emailField.getText().toString(), passwordField.getText().toString(), new Firebase.AuthResultHandler() {
+                    @Override
+                    public void onAuthenticated(AuthData authData) {
+                        System.out.println("Authenticated.");
+                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onAuthenticationError(FirebaseError firebaseError) {
+                        System.out.println("Error.");
+                        // TODO: show incorrect email/pass message
+                    }
+                });
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     // TODO: implement these later

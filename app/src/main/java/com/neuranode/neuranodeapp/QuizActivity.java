@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -78,8 +80,8 @@ public class QuizActivity extends AppCompatActivity {
         System.out.println(traitsAvg.toString());
 
         Intent returnIntent = new Intent();
-        returnIntent.putExtra(MainActivity.QUIZ_CODE, traitsAvg);
-        System.out.println(Arrays.toString(returnIntent.getExtras().getIntArray(MainActivity.QUIZ_CODE)));
+        returnIntent.putExtra(SelfFragment.QUIZ_CODE, traitsAvg);
+        System.out.println(Arrays.toString(returnIntent.getExtras().getIntArray(SelfFragment.QUIZ_CODE)));
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }

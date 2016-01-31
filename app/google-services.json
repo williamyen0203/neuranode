@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_id": "neuranode-1206",
+    "project_number": "482627620115",
+    "name": "Neuranode"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482627620115:android:a042505e60b1dff5",
+        "client_id": "android:com.neuranode.neuranodeapp",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.neuranode.neuranodeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482627620115-t5mcjqvsq07jqaadm00v7k9bje5rl8r2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neuranode.neuranodeapp",
+            "certificate_hash": "2FB773A82712D4C43825649190E731EBBEFB8A00"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
