@@ -1,38 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.neuranode.neuranodeapp.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.neuranode.neuranodeapp.RegisterActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Profile"
-        android:id="@+id/profileButton"
-        android:layout_centerHorizontal="true" />
+    <!-- Login progress -->
 
     <ScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/profileButton"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <EditText
                 android:layout_width="match_parent"
@@ -54,12 +43,15 @@
                 android:layout_marginBottom="15dp"
                 android:hint="@string/password_hint" />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/login"
-                android:id="@+id/loginButton"
-                android:layout_marginBottom="15dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/passwordConfirmField"
+                android:background="@android:color/white"
+                android:layout_marginBottom="15dp"
+                android:hint="@string/password_confirm_hint" />
 
             <Button
                 android:layout_width="match_parent"
@@ -67,7 +59,7 @@
                 android:text="@string/register"
                 android:id="@+id/registerButton"
                 android:layout_marginBottom="15dp" />
+
         </LinearLayout>
     </ScrollView>
-
-</RelativeLayout>
+</LinearLayout>

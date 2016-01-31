@@ -15,14 +15,14 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 public class MainActivity extends AppCompatActivity {
-    Firebase firebaseRef;
+    private Firebase firebaseRef;
 
-    Button profileButton;
+    private Button profileButton;
 
-    EditText emailField;
-    EditText passwordField;
-    Button loginButton;
-    Button registerButton;
+    private EditText emailField;
+    private EditText passwordField;
+    private Button loginButton;
+    private Button registerButton;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
