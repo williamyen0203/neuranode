@@ -9,16 +9,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 public class MainActivity extends AppCompatActivity {
-    private Firebase firebaseRef;
+    public static final String FIREBASE_URL = "https://boiling-torch-9138.firebaseio.com/";
 
-    private Button profileButton;
+    Firebase firebaseRef;
 
+    private TextView messageText;
     private EditText emailField;
     private EditText passwordField;
     private Button loginButton;
@@ -32,16 +34,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // profile button
-        profileButton = (Button) findViewById(R.id.profileButton);
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        // message text
+        messageText = (TextView) findViewById(R.id.messageText);
 
         // login buttons
         emailField = (EditText) findViewById(R.id.emailField);
@@ -50,26 +44,31 @@ public class MainActivity extends AppCompatActivity {
         registerButton = (Button) findViewById(R.id.registerButton);
 
         Firebase.setAndroidContext(this);
-        firebaseRef = new Firebase("https://boiling-torch-9138.firebaseio.com/");
+        firebaseRef = new Firebase(MainActivity.FIREBASE_URL);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseRef.authWithPassword(emailField.getText().toString(), passwordField.getText().toString(), new Firebase.AuthResultHandler() {
-                    @Override
-                    public void onAuthenticated(AuthData authData) {
-                        System.out.println("Authenticated.");
-                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                if (emailField.getText().toString().trim().length() != 0 && passwordField.getText().toString().trim().length() != 0) {
+                    firebaseRef.authWithPassword(emailField.getText().toString(), passwordField.getText().toString(), new Firebase.AuthResultHandler() {
+                        @Override
+                        public void onAuthenticated(AuthData authData) {
+                            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
-                    @Override
-                    public void onAuthenticationError(FirebaseError firebaseError) {
-                        System.out.println("Error.");
-                        // TODO: show incorrect email/pass message
-                    }
-                });
+                        @Override
+                        public void onAuthenticationError(FirebaseError firebaseError) {
+                            passwordField.setText("");
+                            messageText.setText(R.string.error_invalid_login);
+                            messageText.setVisibility(View.VISIBLE);
+                        }
+                    });
+                } else {
+                    messageText.setText(R.string.error_fields_required);
+                    messageText.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -80,6 +79,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        View.OnFocusChangeListener messageClearListener = new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    messageText.setVisibility(View.INVISIBLE);
+                }
+            }
+        };
+        emailField.setOnFocusChangeListener(messageClearListener);
+        passwordField.setOnFocusChangeListener(messageClearListener);
     }
 
     // TODO: implement these later

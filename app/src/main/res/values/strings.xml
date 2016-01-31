@@ -10,7 +10,18 @@
     <string name="password_confirm_hint">Confirm Password</string>
     <string name="submit_button">Submit</string>
     <string name="login">Log In</string>
+    <string name="logout">Log Out</string>
     <string name="register">Register</string>
+    <string name="back">Back</string>
+
+    <!-- Login/Register messages-->
+    <string name="error_invalid_login">Email or password is incorrect.</string>
+    <string name="error_invalid_email">Email is invalid.</string>
+    <string name="error_email_exists">Email is invalid.</string>
+    <string name="error_invalid_password">Password must be at least 8 characters long.</string>
+    <string name="error_invalid_confirmaton">Passwords must match.</string>
+    <string name="error_fields_required">Email or password field must not be empty.</string>
+    <string name="success_registration">Account created successfully!</string>
 
     <!-- Profile Fragments -->
     <string name="self_fragment_header">self</string>
@@ -19,13 +30,4 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="take_quiz">Take Quiz</string>
     <string name="title_activity_register">Register</string>
-
-    <!-- Strings related to login -->
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
 </resources>

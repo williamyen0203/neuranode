@@ -31,5 +31,12 @@
             android:text="@string/take_quiz"
             android:id="@+id/takeQuizButton"
             android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/logout"
+            android:id="@+id/logoutButton"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </RelativeLayout>

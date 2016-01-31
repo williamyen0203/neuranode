@@ -14,6 +14,7 @@ public class CustomSwipeAdapter extends FragmentStatePagerAdapter {
     Bundle bundle;
     Context context;
 
+
     public CustomSwipeAdapter(FragmentManager fragmentManager, Context context){
         super(fragmentManager);
         this.context = context;

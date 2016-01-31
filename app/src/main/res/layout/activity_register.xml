@@ -33,6 +33,13 @@
                 android:layout_marginBottom="15dp"
                 android:hint="@string/email_hint" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailMessageText"
+                android:visibility="invisible"
+                android:singleLine="false" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -42,6 +49,13 @@
                 android:background="@android:color/white"
                 android:layout_marginBottom="15dp"
                 android:hint="@string/password_hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_invalid_password"
+                android:id="@+id/passwordMessageText"
+                android:visibility="invisible" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -53,6 +67,13 @@
                 android:layout_marginBottom="15dp"
                 android:hint="@string/password_confirm_hint" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_invalid_confirmaton"
+                android:id="@+id/confirmMessageText"
+                android:visibility="invisible" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -60,6 +81,14 @@
                 android:id="@+id/registerButton"
                 android:layout_marginBottom="15dp" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/back"
+                android:id="@+id/backButton"
+                android:layout_gravity="center_horizontal" />
+
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

@@ -13,19 +13,12 @@
     tools:context="com.neuranode.neuranodeapp.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Profile"
-        android:id="@+id/profileButton"
-        android:layout_centerHorizontal="true" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/profileButton"
+        android:fillViewport="false"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
         <LinearLayout
@@ -33,6 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/messageText"
+                android:layout_marginBottom="27dp"
+                android:visibility="invisible" />
 
             <EditText
                 android:layout_width="match_parent"

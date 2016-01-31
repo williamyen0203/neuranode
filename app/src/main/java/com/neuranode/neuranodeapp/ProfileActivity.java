@@ -7,11 +7,13 @@ import android.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.firebase.client.Firebase;
+
 public class ProfileActivity extends AppCompatActivity {
-    CustomSwipeAdapter customSwipeAdapter;
-    ViewPager viewPager;
-    PagerTitleStrip pagerTitleStrip;
-    double[] traitsAvg;
+    private CustomSwipeAdapter customSwipeAdapter;
+    private ViewPager viewPager;
+    private PagerTitleStrip pagerTitleStrip;
+    private double[] traitsAvg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

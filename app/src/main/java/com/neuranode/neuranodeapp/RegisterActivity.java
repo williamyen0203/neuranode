@@ -28,6 +28,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,24 +48,43 @@ public class RegisterActivity extends Activity {
     private EditText passwordField;
     private EditText passwordConfirmField;
     private Button registerButton;
+    private Button backButton;
+
+    private TextView emailMessageText;
+    private TextView passwordMessageText;
+    private TextView confirmMessageText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Firebase.setAndroidContext(this);
-        firebaseRef = new Firebase("https://boiling-torch-9138.firebaseio.com/");
+        firebaseRef = new Firebase(MainActivity.FIREBASE_URL);
 
         emailField = (EditText) findViewById(R.id.emailField);
         passwordField = (EditText) findViewById(R.id.passwordField);
         passwordConfirmField = (EditText) findViewById(R.id.passwordConfirmField);
         registerButton = (Button) findViewById(R.id.registerButton);
+        backButton = (Button) findViewById(R.id.backButton);
+
+        emailMessageText = (TextView) findViewById(R.id.emailMessageText);
+        passwordMessageText = (TextView) findViewById(R.id.passwordMessageText);
+        confirmMessageText = (TextView) findViewById(R.id.confirmMessageText);
 
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                emailMessageText.setVisibility(View.INVISIBLE);
+                passwordMessageText.setVisibility(View.INVISIBLE);
+                confirmMessageText.setVisibility(View.INVISIBLE);
                 attemptRegister();
+            }
+        });
+
+        backButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -74,22 +94,30 @@ public class RegisterActivity extends Activity {
         String password = passwordField.getText().toString();
         String passwordConfirm = passwordConfirmField.getText().toString();
 
-        if (isEmailValid(email) && isPasswordValid(password) && password.equals(passwordConfirm)){
+        if (isEmailValid(email) && isPasswordValid(password) && password.equals(passwordConfirm)) {
             firebaseRef.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
                 @Override
                 public void onSuccess(Map<String, Object> stringObjectMap) {
-                    System.out.println("Successfully created new user");
-                    // TODO: show user success notification/check email
+                    finish();
                 }
 
                 @Override
                 public void onError(FirebaseError firebaseError) {
-                    System.out.println("Error has occurred attempting to create account");
-                    // TODO: show user error message (already exists)
+                    emailMessageText.setText(getResources().getText(R.string.error_email_exists));
+                    emailMessageText.setVisibility(View.VISIBLE);
                 }
             });
-        } else{
-            // TODO: show what's wrong
+        } else {
+            if (!isEmailValid(email)) {
+                emailMessageText.setText(getResources().getText(R.string.error_invalid_email));
+                emailMessageText.setVisibility(View.VISIBLE);
+            }
+            if (!isPasswordValid(password)) {
+                passwordMessageText.setVisibility(View.VISIBLE);
+            }
+            if (!password.equals(passwordConfirm) || passwordConfirm.length() == 0) {
+                confirmMessageText.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -99,7 +127,7 @@ public class RegisterActivity extends Activity {
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 4;
+        return password.length() >= 8;
     }
 }
 
