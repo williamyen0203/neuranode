@@ -26,6 +26,42 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:ems="10"
+                android:id="@+id/firstNameField"
+                android:background="@android:color/white"
+                android:layout_marginBottom="15dp"
+                android:hint="@string/first_name_hint"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstNameMessageText"
+                android:visibility="invisible"
+                android:singleLine="false"
+                android:text="@string/error_invalid_first_name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="textEmailAddress|textPersonName"
+                android:ems="10"
+                android:id="@+id/lastNameField"
+                android:background="@android:color/white"
+                android:layout_marginBottom="15dp"
+                android:hint="@string/last_name_hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lastNameMessageText"
+                android:visibility="invisible"
+                android:singleLine="false"
+                android:text="@string/error_invalid_last_name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/emailField"

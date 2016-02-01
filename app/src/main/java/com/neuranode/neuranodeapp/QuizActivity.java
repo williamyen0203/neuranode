@@ -29,34 +29,38 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        //===================================================
 
-        // initialize traits array
-        initializeTraits();
 
-        // load data from database, reset choices
-        databaseHelper = new DatabaseHelper(this);
-        // TODO: close this cursor
-        databaseHelper.clearChoices();
-        Cursor questionListCursor = databaseHelper.cursorQuery(questionQuery);
-        databaseHelper.resetChoices(questionListCursor, 2);
-
-        // set adapter
-        questionCursorAdapter = new QuestionCursorAdapter(this, questionListCursor, 0);
-        questionContainer = (ListView) findViewById(R.id.questionContainer);
-        questionContainer.setAdapter(questionCursorAdapter);
-
-        // set footer
-        View footerView = getLayoutInflater().inflate(R.layout.question_container_footer, null, false);
-        questionContainer.addFooterView(footerView);
-
-        // on submit button click
-        submitButton = (Button) findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateTraits();
-            }
-        });
+        //===================================================
+//
+//        // initialize traits array
+//        initializeTraits();
+//
+//        // load data from database, reset choices
+//        databaseHelper = new DatabaseHelper(this);
+//        // TODO: close this cursor
+//        databaseHelper.clearChoices();
+//        Cursor questionListCursor = databaseHelper.cursorQuery(questionQuery);
+//        databaseHelper.resetChoices(questionListCursor, 2);
+//
+//        // set adapter
+//        questionCursorAdapter = new QuestionCursorAdapter(this, questionListCursor, 0);
+//        questionContainer = (ListView) findViewById(R.id.questionContainer);
+//        questionContainer.setAdapter(questionCursorAdapter);
+//
+//        // set footer
+//        View footerView = getLayoutInflater().inflate(R.layout.question_container_footer, null, false);
+//        questionContainer.addFooterView(footerView);
+//
+//        // on submit button click
+//        submitButton = (Button) findViewById(R.id.submitButton);
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                updateTraits();
+//            }
+//        });
     }
 
     /**
