@@ -1,7 +1,7 @@
 package com.neuranode.neuranodeapp;
 
 /**
- * Created by William on 1/31/2016.
+ * Created by William Yen on 1/31/2016.
  */
 public class User {
     private String firstName;
