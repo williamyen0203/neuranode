@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">NeuranodeApp</string>
+    <string name="facebook_app_id">788355807964203</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Field Hints -->
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="password_confirm_hint">Confirm Password</string>
+
+    <!-- Login/Register Buttons -->
+    <string name="submit_button">Submit</string>
+    <string name="login">Log In</string>
+    <string name="logout">Log Out</string>
+    <string name="register">Register</string>
+    <string name="back">Back</string>
+
+    <!-- Field Error Messages -->
+    <string name="error_invalid_login">Email or password is incorrect.</string>
+    <string name="error_invalid_email">Email is invalid.</string>
+    <string name="error_email_exists">Email already exists.</string>
+    <string name="error_invalid_first_name">First name cannot be empty.</string>
+    <string name="error_invalid_last_name">Last name cannot be empty.</string>
+    <string name="error_invalid_password">Password must be at least 8 characters long.</string>
+    <string name="error_invalid_confirmaton">Passwords must match.</string>
+    <string name="error_fields_required">Email or password field must not be empty.</string>
+
+    <!-- Toasts -->
+    <string name="success_registration">Account created successfully!</string>
+
+    <!-- Profile Fragments -->
+    <string name="self_fragment_header">self</string>
+    <string name="capture_fragment_header">capture</string>
+    <string name="network_fragment_header">network</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="take_quiz">Take Quiz</string>
+    <string name="title_activity_register">Register</string>
+</resources>
