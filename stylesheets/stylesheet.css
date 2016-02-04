@@ -2,8 +2,38 @@
 body {
   font-family: 'Open-Sans', sans-serif; }
 
+.logo {
+  height: 25px; }
+
+.main {
+  text-align: center; }
+
+.banner {
+  height: 500px;
+  width: 100%;
+  background-image: url("../images/banner.png");
+  background-size: cover;
+  background-position: center; }
+
+.banner-buttons form {
+  display: inline; }
+  .banner-buttons form input {
+    padding: 20px; }
+
+.content-sections {
+  margin: 20px 0px; }
+
+.content-images {
+  height: 500px;
+  width: 100%; }
+
 .footer {
+  height: 100px;
   background: #2f3033;
-  color: white; }
+  color: white;
+  text-align: center; }
+
+.copyright {
+  margin-top: 50px; }
 
 /*# sourceMappingURL=stylesheet.css.map */

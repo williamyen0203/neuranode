@@ -6,7 +6,68 @@ body{
   font-family: 'Open-Sans', sans-serif;
 }
 
+////////////
+// HEADER //
+////////////
+
+.logo{
+  height: 25px;
+}
+
+//////////
+// MAIN //
+//////////
+
+////////////
+// BANNER //
+////////////
+
+.main{
+  text-align: center;
+}
+
+.banner{
+  height: 500px;
+  width: 100%;
+  background-image: url("../images/banner.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-buttons{
+  form{
+    display: inline;
+
+    input{
+      padding: 20px;
+    }
+  }
+}
+
+/////////////
+// CONTENT //
+/////////////
+
+.content-sections{
+  margin: 20px 0px;
+}
+
+.content-images{
+  height: 500px;
+  width: 100%;
+}
+
+////////////
+// FOOTER //
+////////////
+
 .footer{
+  height: 100px;
   background: $dark-grey;
   color: white;
+  text-align: center;
+}
+
+.copyright{
+  margin-top: 50px;
 }
