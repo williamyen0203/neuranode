@@ -9,7 +9,9 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
   <!-- javascript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
   <script type="text/javascript" src="javascript/javascript.js"></script>
+  <script type="text/javascript" src="javascript/generateNeuranode.js"></script>
 </head>
 
 <body>
@@ -64,9 +66,47 @@
     <div class="content">
       <div class="container">
 
-        <div class="content-sections more-info row">
+        <div class="row">
+
+          <div class="content-section col-md-2">
+            <form action="javascript:void(0)">
+              <div class="form-group">
+                <input type="text" class="form-control trait-1" placeholder="Quadrant 1">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control trait-2" placeholder="Quadrant 2">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control trait-3" placeholder="Quadrant 3">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control trait-4" placeholder="Quadrant 4">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control trait-5" placeholder="Quadrant 5">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control trait-6" placeholder="Quadrant 6">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control trait-7" placeholder="Quadrant 7">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control trait-8" placeholder="Quadrant 8">
+              </div>
+              <button type="submit" class="btn btn-default neuranode-button">Submit</button>
+            </form>
+          </div>
+
+          <div class="col-md-10">
+            <svg class="neuranode-svg" width="1200" height="1200"></svg>
+          </div>
+
+        </div>
+
+        <div class="content-section more-info row">
           <div class="col-md-4">
-            <img src="images/placeholder.png" class="col-md-4 content-images">
+            <img src="images/placeholder.png" class="content-images">
           </div>
           <div class="col-md-8">
             <p>
@@ -80,7 +120,7 @@
           </div>
         </div>
 
-        <div class="content-sections more-info row">
+        <div class="content-section more-info row">
           <div class="col-md-8">
             <p>
               this is some more info about the app
@@ -92,13 +132,13 @@
             </p>
           </div>
           <div class="col-md-4">
-            <img src="images/placeholder.png" class="col-md-4 content-images">
+            <img src="images/placeholder.png" class="content-images">
           </div>
         </div>
 
-        <div class="content-sections more-info row">
+        <div class="content-section more-info row">
           <div class="col-md-4">
-            <img src="images/placeholder.png" class="col-md-4 content-images">
+            <img src="images/placeholder.png" class="content-images">
           </div>
           <div class="col-md-8">
             <p>
@@ -112,7 +152,7 @@
           </div>
         </div>
 
-        <div class="content-sections about-team row">
+        <div class="content-section about-team row">
           <div class="col-md-8">
             <p>
               this is some info about the team
@@ -128,9 +168,9 @@
           </div>
         </div>
 
-        <div class="content-sections contact row">
+        <div class="content-section contact row">
           <div class="col-md-4">
-            <img src="images/placeholder.png" class="col-md-4 content-images">
+            <img src="images/placeholder.png" class="content-images">
           </div>
           <div class="col-md-8">
             <p>
