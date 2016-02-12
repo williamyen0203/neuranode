@@ -71,15 +71,16 @@ $(document).ready(function() {
 
     for (var octant = 0; octant < 8; octant++) {
       // node drawing
-      var offset = (octant % 2 == 0) ? 2 : 0;
-      for (var nodeCounter = 0; nodeCounter <= qArray[octant] + offset; nodeCounter++) {
+      //var offset = (octant % 2 == 0) ? 2 : 0;
+      for (var nodeCounter = 0; nodeCounter <= qArray[octant]; nodeCounter++) {
         octagonalNodeArray(
           fixQuadX(octArray[octant][0][nodeCounter]),
           fixQuadY(octArray[octant][1][nodeCounter])
         );
       }
+
       // linear arborization
-      for (var lineCounter = 0; lineCounter < qArray[octant] + offset; lineCounter++) {
+      for (var lineCounter = 0; lineCounter < qArray[octant]; lineCounter++) {
         oA(octArray[octant][0][lineCounter],
           octArray[octant][1][lineCounter],
           octArray[octant][0][lineCounter + 1],
@@ -143,7 +144,7 @@ var randomInterval = function(min, max) {
 }
 
 var octagonalNodeArray = function(xCoordinate, yCoordinate) {
-  s.circle(xCoordinate, yCoordinate, 10)
+  s.circle(xCoordinate,yCoordinate, 10)
     .attr({
       fill: color1,
       stroke: color1,
