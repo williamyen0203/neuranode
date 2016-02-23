@@ -145,7 +145,7 @@ var randomInterval = function(min, max) {
 }
 
 var octagonalNodeArray = function(xCoordinate, yCoordinate) {
-  s.circle(xCoordinate, yCoordinate, 10)
+  s.circle(xCoordinate,yCoordinate, 10)
     .attr({
       fill: color1,
       stroke: color1,
@@ -176,6 +176,7 @@ var oA = function(x1, y1, x2, y2) {
   y2 = fixQuadY(y2);
 
   // determine our distances from static points
+  var rando = Math.random() * 10;
   oneThirdX = ((x1 * (2 / 3)) + (x2 * (1 / 3)));
   oneThirdY = ((y1 * (2 / 3)) + (y2 * (1 / 3)));
   twoThirdX = ((x1 * (1 / 3)) + (x2 * (2 / 3)));

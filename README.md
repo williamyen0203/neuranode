@@ -2,4 +2,6 @@
 
 This is the website for Neuranode.
 
-http://williamyen0203.github.io/neuranode
+http://neuranode.bitbucket.org/
+
+Work in progress
