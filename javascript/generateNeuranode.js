@@ -69,17 +69,18 @@ $(document).ready(function() {
       ],
     ];
 
+    //nodes
     for (var octant = 0; octant < 8; octant++) {
-      // node drawing
-      //var offset = (octant % 2 == 0) ? 2 : 0;
-      for (var nodeCounter = 0; nodeCounter <= qArray[octant]; nodeCounter++) {
+      //node drawing
+      var offset = (octant % 2 == 0) ? 2 : 0;
+      for (var nodeCounter = 0; nodeCounter <= qArray[octant] + offset; nodeCounter++) {
         octagonalNodeArray(
           fixQuadX(octArray[octant][0][nodeCounter]),
           fixQuadY(octArray[octant][1][nodeCounter])
         );
       }
 
-      // linear arborization
+      // organic arborization
       for (var lineCounter = 0; lineCounter < qArray[octant]; lineCounter++) {
         oA(octArray[octant][0][lineCounter],
           octArray[octant][1][lineCounter],
@@ -175,13 +176,14 @@ var oA = function(x1, y1, x2, y2) {
   y2 = fixQuadY(y2);
 
   // determine our distances from static points
+  var rando = Math.random() * 10;
   oneThirdX = ((x1 * (2 / 3)) + (x2 * (1 / 3)));
   oneThirdY = ((y1 * (2 / 3)) + (y2 * (1 / 3)));
   twoThirdX = ((x1 * (1 / 3)) + (x2 * (2 / 3)));
   twoThirdY = ((y1 * (1 / 3)) + (y2 * (2 / 3)));
 
   // get proper translation in each quadrant
-  newControlPointX1 = randomInterval(x1, oneThirdX);
+  newControlPointX1 = randomInterval(x1, oneThirdX) ;
   newControlPointY1 = randomInterval(y1, oneThirdY);
   newControlPointX2 = randomInterval(twoThirdX, x2);
   newControlPointY2 = randomInterval(twoThirdY, y2);
