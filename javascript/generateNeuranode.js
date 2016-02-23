@@ -16,110 +16,112 @@ var boundsStroke = 2;
 var qArray = [0, 0, 0, 0, 0, 0, 0, 0];
 
 $(document).ready(function() {
-  $(".neuranode-button").click(function() {
-    // s = Snap(canvasX, canvasY);
-    s = Snap(".neuranode-svg");
-
-    // initialize variables
-    for (var i = 0; i < 8; i++) {
-      qArray[i] = $(".trait-" + (i + 1)).val();
-    }
-
-    // circle backdrop
-    var circleBackdrop = s.circle(fixQuadX(0), fixQuadY(0), 500);
-    circleBackdrop.attr({
-      fill: backdropFillColor,
-      stroke: backdropStrokeColor,
-      strokeWidth: backdropStrokeWidth
-    });
-
-    // every other octant, will connect the central node to the quadrant primary nodes.
-    var octArray = [
-      [
-        [0, 100, 200, 250, 325, 350, 425], // oct1X
-        [0, 100, 200, 75, 175, 300, 75] // oct1Y
-      ],
-      [
-        [200, 75, 175, 300, 75], // oct2X
-        [200, 250, 325, 350, 425] // oct2Y
-      ],
-      [
-        [0, -100, -200, -75, -175, -300, -75], // oct3X
-        [0, 100, 200, 250, 325, 350, 425] // oct3Y
-      ],
-      [
-        [-200, -250, -325, -350, -425], // oct4X
-        [200, 75, 175, 300, 75] // oct4Y
-      ],
-      [
-        [0, -100, -200, -250, -325, -350, -425], // oct5X
-        [0, -100, -200, -75, -175, -300, -75] // oct5Y
-      ],
-      [
-        [-200, -75, -175, -300, -75], // oct6X
-        [-200, -250, -325, -350, -425] // oct6Y
-      ],
-      [
-        [0, 100, 200, 250, 325, 350, 425], // oct7X
-        [0, -100, -200, -75, -175, -300, -75] // oct7Y
-      ],
-      [
-        [200, 75, 175, 300, 75], // oct8X
-        [-200, -250, -325, -350, -425] // oct8Y
-      ],
-    ];
-
-    for (var octant = 0; octant < 8; octant++) {
-      // node drawing
-      var offset = (octant % 2 == 0) ? 2 : 0;
-      for (var nodeCounter = 0; nodeCounter <= qArray[octant] + offset; nodeCounter++) {
-        octagonalNodeArray(
-          fixQuadX(octArray[octant][0][nodeCounter]),
-          fixQuadY(octArray[octant][1][nodeCounter])
-        );
-      }
-      // linear arborization
-      for (var lineCounter = 0; lineCounter < qArray[octant] + offset; lineCounter++) {
-        oA(octArray[octant][0][lineCounter],
-          octArray[octant][1][lineCounter],
-          octArray[octant][0][lineCounter + 1],
-          octArray[octant][1][lineCounter + 1]
-        );
-      }
-    }
-
-    // NOTE: don't know what to name this array
-    // TODO: change name
-    var array2 = [
-      // visual enhancement of the illustrator
-      [0, -500, 0, 500], // y-axis
-      [-500, 0, 500, 0], // x-axis
-      [-500, -500, 500, 500], // diag yx
-      [-500, 500, 500, -500], // diag y - x
-      // bounds for octagonal approach that will be taken
-      [500, 0, 353, 353], // oct 1 quad 1
-      [353, 353, 0, 500], // oct 2 quad 2
-      [0, 500, -353, 353], // oct 1 quad 2
-      [-353, 353, -500, 0], // oct 2 quad 2
-      [-500, 0, -353, -353], // oct 1 quad 3
-      [-353, -353, 0, -500], // oct 2 quad 3
-      [0, -500, 353, -353], // oct 1 quad 4
-      [353, -353, 500, 0] // oct 2 quad 4
-    ];
-
-    for (var i = 0; i < array2.length; i++) {
-      s.line(fixQuadX(array2[i][0]),
-        fixQuadY(array2[i][1]),
-        fixQuadX(array2[i][2]),
-        fixQuadY(array2[i][3])
-      ).attr({
-        fill: "none",
-        stroke: color1,
-        strokeWidth: boundsStroke
-      });
-    }
-  });
+  // $(".neuranode-button").click(generateNeuranode);
 });
+
+var generateNeuranode = function() {
+  // s = Snap(canvasX, canvasY);
+  s = Snap(".neuranode-svg");
+
+  // initialize variables
+  for (var i = 0; i < 8; i++) {
+    qArray[i] = $(".trait-" + (i + 1)).val();
+  }
+
+  // circle backdrop
+  var circleBackdrop = s.circle(fixQuadX(0), fixQuadY(0), canvasX / 2);
+  circleBackdrop.attr({
+    fill: backdropFillColor,
+    stroke: backdropStrokeColor,
+    strokeWidth: backdropStrokeWidth
+  });
+
+  // every other octant, will connect the central node to the quadrant primary nodes.
+  var octArray = [
+    [
+      [0, 100, 200, 250, 325, 350, 425], // oct1X
+      [0, 100, 200, 75, 175, 300, 75] // oct1Y
+    ],
+    [
+      [200, 75, 175, 300, 75], // oct2X
+      [200, 250, 325, 350, 425] // oct2Y
+    ],
+    [
+      [0, -100, -200, -75, -175, -300, -75], // oct3X
+      [0, 100, 200, 250, 325, 350, 425] // oct3Y
+    ],
+    [
+      [-200, -250, -325, -350, -425], // oct4X
+      [200, 75, 175, 300, 75] // oct4Y
+    ],
+    [
+      [0, -100, -200, -250, -325, -350, -425], // oct5X
+      [0, -100, -200, -75, -175, -300, -75] // oct5Y
+    ],
+    [
+      [-200, -75, -175, -300, -75], // oct6X
+      [-200, -250, -325, -350, -425] // oct6Y
+    ],
+    [
+      [0, 100, 200, 250, 325, 350, 425], // oct7X
+      [0, -100, -200, -75, -175, -300, -75] // oct7Y
+    ],
+    [
+      [200, 75, 175, 300, 75], // oct8X
+      [-200, -250, -325, -350, -425] // oct8Y
+    ]
+  ];
+
+  for (var octant = 0; octant < octArray.length; octant++) {
+    // node drawing
+    var offset = (octant % 2 == 0) ? 0 : 2;
+    for (nodeCounter = 0; nodeCounter <= qArray[octant] + offset; nodeCounter++) {
+      octagonalNodeArray(
+        fixQuadX(octArray[octant][0][nodeCounter]),
+        fixQuadY(octArray[octant][1][nodeCounter])
+      );
+    }
+    // linear arborization
+    for (var lineCounter = 0; lineCounter <= qArray[octant] + offset; lineCounter++) {
+      oA(octArray[octant][0][lineCounter],
+        octArray[octant][1][lineCounter],
+        octArray[octant][0][lineCounter + 1],
+        octArray[octant][1][lineCounter + 1]
+      );
+    }
+  }
+
+  // NOTE: don't know what to name this array
+  // TODO: change name
+  var array2 = [
+    // visual enhancement of the illustrator
+    [0, -500, 0, 500],      // y-axis
+    [-500, 0, 500, 0],      // x-axis
+    [-500, -500, 500, 500], // diag yx
+    [-500, 500, 500, -500], // diag y - x
+    // bounds for octagonal approach that will be taken
+    [500, 0, 353, 353],     // oct 1 quad 1
+    [353, 353, 0, 500],     // oct 2 quad 2
+    [0, 500, -353, 353],    // oct 1 quad 2
+    [-353, 353, -500, 0],   // oct 2 quad 2
+    [-500, 0, -353, -353],  // oct 1 quad 3
+    [-353, -353, 0, -500],  // oct 2 quad 3
+    [0, -500, 353, -353],   // oct 1 quad 4
+    [353, -353, 500, 0]     // oct 2 quad 4
+  ];
+
+  for (var i = 0; i < array2.length; i++) {
+    s.line(fixQuadX(array2[i][0]),
+      fixQuadY(array2[i][1]),
+      fixQuadX(array2[i][2]),
+      fixQuadY(array2[i][3])
+    ).attr({
+      fill: "none",
+      stroke: color1,
+      strokeWidth: boundsStroke
+    });
+  }
+};
 
 var fixQuadX = function(coordinateX) {
   if (coordinateX > 0) {
